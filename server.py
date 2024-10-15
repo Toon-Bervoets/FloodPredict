@@ -42,6 +42,10 @@ def get_weather():
         weather_icon_url = f"http://openweathermap.org/img/wn/{weather_data['weather'][0]['icon']}@2x.png"
     )
 
+# 404 Error Handler
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('404.html'), 404
 
 if __name__ == "__main__":
     serve(app, host="0.0.0.0", port=8000)
