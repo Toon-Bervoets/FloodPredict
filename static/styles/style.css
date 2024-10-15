@@ -21,3 +21,16 @@ input, button {
     padding: 1rem;
     border-radius: 10px;
 }
+
+.weather-icon {
+    vertical-align: middle;
+    width: 50px;  
+    height: auto;  
+    margin-right: 60px; 
+}
+
+.weather-info {
+    display: flex;
+    align-items: center;
+    margin-left: -60px; /* Shift both icon and text slightly to the left */
+}
