@@ -1,14 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ title }} Weather</title>
-    <link href="{{ url_for('static', filename='styles/style.css') }}" rel="stylesheet" />
-</head>
+{% block title %}{{ title }} Weather{% endblock %}
 
-<body>
+{% block content %}
     <h1>{{ title }} Weather</h1>
     <p class="weather-info">
         <img src="{{ weather_icon_url }}" alt="Weather Icon" />
@@ -17,10 +11,8 @@
     <p>Feels like {{ feels_like }} &deg;C;</p>
     <p>Local time: {{ local_time }}</p>
 
-    <form action="/weather">
+    <form action="/weather" method="get">
         <input type="text" name="city" id="city" placeholder="Enter a City" />
         <button type="submit">Submit</button>
     </form>
-</body>
-
-</html>
+{% endblock %}

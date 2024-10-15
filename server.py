@@ -11,6 +11,9 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
+@app.route('/weather_search')
+def weather_search():
+    return render_template('get_weather.html')  # Render the input form here
 
 @app.route('/weather')
 def get_weather():
@@ -46,6 +49,10 @@ def get_weather():
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template('404.html'), 404
+# Route for City Not Found Page
+@app.route('/city-not-found')
+def city_not_found():
+    return render_template('city-not-found.html')
 
 if __name__ == "__main__":
     serve(app, host="0.0.0.0", port=8000)

@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block title %}Get Weather Conditions{% endblock %}
+
+{% block content %}
+    <h1>Get Weather Conditions</h1>
+    <form action="/weather" method="get">
+        <input type="text" name="city" id="city" placeholder="Enter a City" required />
+        <button type="submit">Submit</button>
+    </form>
+{% endblock %}
