@@ -13,7 +13,11 @@ def index():
 
 @app.route('/weather_search')
 def weather_search():
-    return render_template('get_weather.html')  # Render the input form here
+    return render_template('get_weather.html')
+
+@app.route('/predict')
+def weather_predict():
+    return render_template('floodpredict.html')
 
 @app.route('/weather')
 def get_weather():
@@ -44,6 +48,11 @@ def get_weather():
         local_time=local_time.strftime('%d-%m-%Y %H:%M'),
         weather_icon_url = f"http://openweathermap.org/img/wn/{weather_data['weather'][0]['icon']}@2x.png"
     )
+
+@app.route('/about')
+def about():
+    return render_template('about.html')  # New route for the About page
+
 
 # 404 Error Handler
 @app.errorhandler(404)

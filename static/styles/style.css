@@ -22,6 +22,15 @@ input, button {
     border-radius: 10px;
 }
 
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    justify-content: center; 
+    min-height: 100vh; 
+}
+
+
 .weather-icon {
     vertical-align: middle;
     width: 50px;  
@@ -74,3 +83,166 @@ nav ul li a:hover {
     background-color: #555; /* Background color on hover */
 }
 
+/* Weather Form Styles */
+.weather-form {
+    display: flex;               /* Align items horizontally */
+    justify-content: center;     /* Center items horizontally */
+    align-items: center;         /* Center items vertically */
+    gap: 1rem;                  /* Space between input and button */
+    margin-top: 2rem;           /* Space above the form */
+}
+
+.weather-form input {
+    font-size: 2rem;            /* Original font size */
+    padding: 1rem;              /* Original padding */
+    border-radius: 10px;        /* Rounded corners */
+    width: 300px;               /* Set width to a larger value */
+}
+
+.weather-form button {
+    font-size: 2rem;            /* Original font size */
+    padding: 1rem;              /* Original padding */
+    border-radius: 10px;        /* Rounded corners */
+    background-color: #007bff;  /* Button background color */
+    color: white;               /* Button text color */
+    border: none;               /* Remove border */
+    cursor: pointer;            /* Change cursor on hover */
+}
+
+/* Title styles */
+.welcome-title {
+    font-size: 4rem;
+    color: #EDE5A6;
+    margin-bottom: 1rem; /* Space below the title */
+}
+
+.intro-text {
+    font-size: 1.5rem;
+    color: #ffffff;
+    margin-bottom: 2rem; /* Space below the intro text */
+}
+
+/* Jumbotron styles */
+.jumbotron {
+    margin-top: 2rem;
+    background-color: rgba(255, 255, 255, 0.1); /* Slightly transparent background */
+    border-radius: 15px; /* Rounded corners */
+    padding: 2rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow effect */
+}
+
+.jumbotron-title {
+    font-size: 3rem;
+    color: #EDE5A6; /* Title color */
+}
+
+.jumbotron-text {
+    font-size: 1.25rem;
+    margin-bottom: 1rem; /* Space below the text */
+}
+
+.jumbotron-divider {
+    margin: 2rem 0; 
+    border-top: 1px solid #EDE5A6; /* Divider color */
+}
+
+/* Button styles */
+.btn {
+    margin-top: 1rem;
+    background-color: #177E89; /* Button background color */
+    color: white; /* Button text color */
+    border: none; /* Remove border */
+    border-radius: 10px; /* Rounded corners */
+    padding: 1rem 2rem; /* More padding for a larger button */
+    font-size: 1.5rem; /* Font size for button text */
+    transition: background-color 0.3s; /* Smooth transition for hover effect */
+}
+
+.btn:hover {
+    background-color: #08605F; /* Darker shade on hover */
+}
+
+.btn-spacing {
+    margin-top: 20px; /* Adjust as needed */
+}
+
+
+/* Learn more link */
+.learn-more-text {
+    font-size: 1.25rem;
+}
+
+.highlight-text {
+    color: #EDE5A6; /* Highlight color for the link */
+}
+
+/* Parallax styles */
+.parallax {
+    position: relative;
+    height: 400px; /* Height of parallax section */
+    overflow: hidden;
+}
+
+.parallax-inner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Overlay color */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.parallax-title {
+    font-size: 5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Text shadow for contrast */
+    color: #ffffff; /* Title color */
+}
+
+/* Info box styles */
+.info-box {
+    padding: 2rem;
+    background-color: #1c1c1c; /* Background color for info box */
+    border-radius: 15px; /* Rounded corners */
+    margin-top: 2rem; /* Space above the info box */
+}
+
+.info-title {
+    color: #EDE5A6; /* Title color */
+}
+
+.info-text {
+    font-size: 1.25rem;
+}
+
+/* Footer styles */
+footer {
+    background-color: #598381; /* Footer background color */
+    color: white; /* Text color */
+    padding: 1rem; /* Padding for the footer */
+    text-align: center; /* Center text */
+    font-size: 0.875rem; /* Smaller font size for footer text */
+    position: relative; /* Ensures footer is positioned correctly */
+    bottom: 0; /* Stick to the bottom */
+    width: 100%; /* Full width */
+}
+
+/* Optional: Add styles for links in footer */
+footer a {
+    color: #ffffff; /* Link color */
+    text-decoration: none; /* Remove underline */
+}
+
+footer a:hover {
+    text-decoration: underline; /* Underline on hover */
+}

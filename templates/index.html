@@ -1,8 +1,32 @@
 {% extends 'base.html' %}
 
-{% block title %}Get Weather Conditions{% endblock %}
+{% block title %}Welcome to Flood Predict{% endblock %}
 
 {% block content %}
-    <h1>Welcome to the Weather App</h1>
-    <p>This website provides current weather conditions for various cities.</p>
+<div class="container-fluid text-center" style="padding: 4rem;">
+    <h1 class="welcome-title">Welcome to Flood Predict</h1>
+    <p class="intro-text">This website provides current weather conditions and accurate flood predictions for various cities in Belgium.</p>
+
+    <div class="jumbotron">
+        <h2 class="jumbotron-title">Use Flood Predict to stay informed!</h2>
+        <p class="jumbotron-text">With advanced machine learning and real-time data analysis, we offer highly accurate flood predictions.</p>
+        <a class="btn btn-lg" href="/floodpredict" role="button">Flood Predict</a>
+        <a class="btn btn-lg" href="/weather_search" role="button">Weather search</a>
+        <hr class="jumbotron-divider">
+        <p class="learn-more-text">To learn more about our project, <a href="/about" class="highlight-text">click here</a>.</p>
+    </div>
+
+    <div class="parallax">
+        <div class="parallax-inner">
+            <div class="overlay">
+                <h1 class="parallax-title">Flood Predictions Made Easy</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container text-center info-box">
+    <h2 class="info-title">Accurate Predictions, Local Warnings</h2>
+    <p class="info-text">Flood Predict utilizes advanced Machine Learning models to provide accurate flood forecasts, empowering communities to take preventive actions and safeguard lives.</p>
+</div>
 {% endblock %}
