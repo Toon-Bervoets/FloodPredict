@@ -33,15 +33,15 @@ input, button {
 
 .weather-icon {
     vertical-align: middle;
-    width: 50px;  
+    width: 100px;  
     height: auto;  
-    margin-right: 60px; 
+    margin-right: 3px; 
 }
 
 .weather-info {
     display: flex;
     align-items: center;
-    margin-left: -60px; /* Shift both icon and text slightly to the left */
+    margin-left: -80px; /* Shift both icon and text slightly to the left */
 }
 
 @media (max-width: 600px) {

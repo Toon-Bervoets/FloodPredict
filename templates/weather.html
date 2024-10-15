@@ -3,11 +3,11 @@
 {% block title %}{{ title }} Weather{% endblock %}
 
 {% block content %}
-    <h1>{{ title }} Weather</h1>
-    <p class="weather-info">
+    <h1 class="weather-info">
         <img src="{{ weather_icon_url }}" alt="Weather Icon" class="weather-icon" />
-        {{ status }} and {{ temp }} &deg;C;
-    </p>
+        {{ title }} Weather
+    </h1>
+    <p>{{ status }} and {{ temp }} &deg;C;</p>
     <p>Feels like {{ feels_like }} &deg;C;</p>
     <p>Local time: {{ local_time }}</p>
 
