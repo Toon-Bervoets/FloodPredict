@@ -34,3 +34,18 @@ input, button {
     align-items: center;
     margin-left: -60px; /* Shift both icon and text slightly to the left */
 }
+
+@media (max-width: 600px) {
+    .weather-icon {
+        width: 30px; /* Smaller icon on mobile */
+    }
+    
+    .weather-info {
+        margin-left: 0; /* Remove left margin on mobile */
+    }
+
+    p {
+        font-size: 14px; /* Smaller font size for mobile */
+    }
+}
+
