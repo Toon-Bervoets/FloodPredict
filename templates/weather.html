@@ -10,8 +10,12 @@
 
 <body>
     <h1>{{ title }} Weather</h1>
-    <p>{{ status }} and {{ temp }} &deg;C;</p>
+    <p>
+        <img src="{{ weather_icon_url }}" alt="Weather Icon" style="vertical-align: middle;" />
+        {{ status }} and {{ temp }} &deg;C;
+    </p>
     <p>Feels like {{ feels_like }} &deg;C;</p>
+    <p>Local time: {{ local_time }}</p>
 
     <form action="/weather">
         <input type="text" name="city" id="city" placeholder="Enter a City" />
