@@ -19,6 +19,10 @@ def weather_search():
 def weather_predict():
     return render_template('floodpredict.html')
 
+@app.route('/about-us')
+def about_us():
+    return render_template('about_us.html')
+
 @app.route('/weather')
 def get_weather():
     city = request.args.get('city')

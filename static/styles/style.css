@@ -109,6 +109,7 @@ input, button {
 nav {
     background-color: #333;
     color: white;
+    border-radius: 10px;
 }
 
 nav ul {
@@ -129,6 +130,7 @@ nav ul li a {
 
 nav ul li a:hover {
     background-color: #555; /* Background color on hover */
+    border-radius: 10px;
 }
 
 /* Weather Form Styles */
@@ -189,9 +191,44 @@ nav ul li a:hover {
     margin-bottom: 1rem; /* Space below the text */
 }
 
+.group-title {
+    font-size: 2rem;
+    margin-top: 1rem;
+    color: #EDE5A6; /* Group title color */
+}
+
 .jumbotron-divider {
     margin: 2rem 0; 
     border-top: 1px solid #EDE5A6; /* Divider color */
+}
+
+.team-member {
+    display: flex;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.team-member img {
+    height: 12.03vh;
+    width: 12.03vh;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid black;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+    margin-right: 20px; /* Space between image and text */
+}
+
+.member-info h3 {
+    margin: 0;
+    color: #EDE5A6; /* Name color */
+}
+
+.role {
+    color: rgb(89, 89, 89);
+}
+
+.project-role {
+    color: rgb(119, 119, 119);
 }
 
 /* Button styles */
@@ -221,13 +258,13 @@ nav ul li a:hover {
 }
 
 .highlight-text {
-    color: #EDE5A6; /* Highlight color for the link */
+    color: #EDE5A6;
 }
 
 /* Parallax styles */
 .parallax {
     position: relative;
-    height: 400px; /* Height of parallax section */
+    height: 400px; 
     overflow: hidden;
 }
 
@@ -245,10 +282,11 @@ nav ul li a:hover {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5); /* Overlay color */
+    background: rgba(0, 0, 0, 0.5);
     display: flex;
     align-items: center;
     justify-content: center;
+    border-radius: 15px;
 }
 
 .parallax-title {
@@ -275,22 +313,22 @@ nav ul li a:hover {
 
 /* Footer styles */
 footer {
-    background-color: #598381; /* Footer background color */
-    color: white; /* Text color */
-    padding: 1rem; /* Padding for the footer */
-    text-align: center; /* Center text */
-    font-size: 0.875rem; /* Smaller font size for footer text */
-    position: relative; /* Ensures footer is positioned correctly */
-    bottom: 0; /* Stick to the bottom */
-    width: 100%; /* Full width */
+    background-color: #598381; 
+    color: white; 
+    padding: 1rem; 
+    text-align: center; 
+    font-size: 0.875rem; 
+    position: relative; 
+    bottom: 0; 
+    width: 100%; 
+    border-radius: 10px;
 }
 
-/* Optional: Add styles for links in footer */
 footer a {
-    color: #ffffff; /* Link color */
-    text-decoration: none; /* Remove underline */
+    color: #ffffff; 
+    text-decoration: none; 
 }
 
 footer a:hover {
-    text-decoration: underline; /* Underline on hover */
+    text-decoration: underline;
 }
