@@ -234,21 +234,22 @@ nav ul li a:hover {
 /* Button styles */
 .btn {
     margin-top: 1rem;
-    background-color: #177E89; /* Button background color */
-    color: white; /* Button text color */
-    border: none; /* Remove border */
-    border-radius: 10px; /* Rounded corners */
-    padding: 1rem 2rem; /* More padding for a larger button */
-    font-size: 1.5rem; /* Font size for button text */
-    transition: background-color 0.3s; /* Smooth transition for hover effect */
+    background-color: #177E89; 
+    color: white; 
+    border: none; 
+    border-radius: 10px; 
+    padding: 1rem 1rem; 
+    font-size: 1.5rem; 
+    transition: background-color 0.3s;
+    text-decoration: none;
 }
 
 .btn:hover {
-    background-color: #08605F; /* Darker shade on hover */
+    background-color: #08605F;
 }
 
 .btn-spacing {
-    margin-top: 20px; /* Adjust as needed */
+    margin-top: 20px;
 }
 
 
