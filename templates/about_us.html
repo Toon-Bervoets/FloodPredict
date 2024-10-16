@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block title %}About Us{% endblock %}
+
+{% block content %}
+<div class="jumbotron">
+    <h2 class="jumbotron-title">About Us</h2>
+    <hr class="jumbotron-divider">
+    <h3 class="group-title">Group BWK1A1</h3>
+    <p class="jumbotron-text">
+        We’re motivated students at KU Leuven in Belgium studying engineering sciences. We received an assignment from ESAT (Electrical Engineering Department) to create a smart grid for efficient car charging. Initially, we were strangers and the assignment was vague, but over time, we got to know each other and became friends, which was crucial for our collaboration on this project. As the project progressed, the objectives became clearer, allowing us to develop a vision and workflow to successfully complete it. 
+        <br><br>
+        Our motivation stemmed from the project's contribution to a greener future. Not only did we learn about sustainable charging solutions, but we also gained valuable experience working in a group environment—an essential skill we will utilize as engineers tackling larger, more complex challenges.
+    </p>
+    <br>
+    <div class="row">
+        <div class="col-md-6 col-12">
+            {% for member in [
+                {"name": "Manon Annet", "role": "Machine Learning Engineer (Consumption Data), Full Stack Web Developer", "project_role": "Completer Finisher", "img": "manon.png"},
+                {"name": "Toon Bervoets", "role": "Full Stack Web Developer, Website Developer", "project_role": "Plant, Specialist", "img": "toon.png"},
+                {"name": "Isabelle Boogaerts", "role": "Algorithm Engineer", "project_role": "Implementer", "img": "isabelle.png"}
+            ] %}
+            <div class="team-member">
+                <img src="{{ url_for('static', filename='/img/' + member.img) }}"/>
+                <div class="member-info">
+                    <h3>{{ member.name }}</h3>
+                    <h6 class="role">{{ member.role }}</h6>
+                    <h6 class="project-role">{{ member.project_role }}</h6>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="col-md-6 col-12">
+            {% for member in [
+                {"name": "Lauranne Brouwers", "role": "Machine Learning Engineer, Website Developer", "project_role": "Resource Investigator", "img": "lauranne.png"},
+                {"name": "Doran De Gersem", "role": "Machine Learning Engineer", "project_role": "Shaper, Monitor Evaluator", "img": "doran.png"},
+                {"name": "Mil Fonteyn", "role": "Algorithm Engineer, Website Developer", "project_role": "Co-ordinator", "img": "mil.png"}
+            ] %}
+            <div class="team-member">
+                <img src="{{ url_for('static', filename='/img/' + member.img) }}" />
+                <div class="member-info">
+                    <h3>{{ member.name }}</h3>
+                    <h6 class="role">{{ member.role }}</h6>
+                    <h6 class="project-role">{{ member.project_role }}</h6>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}
