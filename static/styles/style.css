@@ -30,6 +30,54 @@ input, button {
     min-height: 100vh; 
 }
 
+.container_w_image {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+
+    background-image: url('/static/img/background_map.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.container_w_image::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9); 
+    border-radius: 15px;
+    z-index: 1;
+}
+
+.container_w_image * {
+    position: relative;
+    z-index: 2; 
+}
+
+.info-box_w_image {
+    background-color: rgba(0, 0, 0, 0.5); 
+    padding: 0.5rem 1rem; 
+    border-radius: 15px;
+    max-width: 600px; 
+    max-height: 200px; 
+    text-align: center; 
+    overflow: hidden; 
+}
+
+.info-title_w_image {
+    color: #f0db4f;
+}
+
+.info-text_w_image {
+    font-size: 1.25rem;
+}
 
 .weather-icon {
     vertical-align: middle;
