@@ -23,6 +23,10 @@ def weather_predict():
 def about_us():
     return render_template('about_us.html')
 
+@app.route('/map')
+def map():
+    return render_template('map.html')
+
 @app.route('/weather')
 def get_weather():
     city = request.args.get('city')
