@@ -4,8 +4,35 @@
 
 {% block content %}
 <div class="container text-center">
-    <h1>Coming later...</h1>
-    <iframe src="/map" width="1000" height="600" frameborder="2" center></iframe>
-    <a href="/weather_search" class="btn btn-primary btn-spacing">Check the Weather</a>
+    <!-- Embed the map -->
+    <iframe src="/map" id="mapIframe" width="1000" height="600" frameborder="2"></iframe>
+
+    <!-- Searchbox under the map -->
+    <div id="search-container" style="margin-top: 20px;">
+        <input type="text" id="search-box" placeholder="Search..." class="form-control"
+            style="display: inline-block; width: 300px; margin-right: 10px;" />
+        <button id="search-button" class="btn btn-primary">Search</button>
+    </div>
+
+    <!-- Optional: Button for weather check -->
+    <a href="/weather_search" class="btn btn-primary btn-spacing" style="margin-top: 20px;">Check the Weather</a>
 </div>
+
+<script>
+    // Function to handle search and communicate with iframe
+    document.getElementById('search-button').addEventListener('click', function() {
+        const searchValue = document.getElementById('search-box').value.trim().toLowerCase();
+        const iframe = document.getElementById("mapIframe");
+
+        // Send the search value to the iframe (map page)
+        iframe.contentWindow.postMessage({ type: "search", value: searchValue }, "*");
+    });
+
+    // Listen for feedback from the iframe (for example, if municipality not found)
+    window.addEventListener("message", (event) => {
+        if (event.data.type === "notFound") {
+            alert("Municipality not found");
+        }
+    });
+</script>
 {% endblock %}

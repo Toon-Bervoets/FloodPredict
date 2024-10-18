@@ -80,6 +80,12 @@
         fill: #2a255081 !important;
     }
 
+    .highlight {
+        stroke: red;
+        stroke-width: 3;
+        fill: #598381;
+    }
+
 </style>
 
 <body id="body">
@@ -474,9 +480,62 @@
         });
 
         e.addEventListener("click", function () {
-            getUser(e.id);
+            const hoofdGemeente = e.getAttribute('data-hoofd-gemeente');
+            const gemeente = hoofdGemeente ? hoofdGemeente : e.getAttribute('data-gemeente');
+            window.location.href = `/predict-info/${gemeente}`;
         });
+
     });
+
+    // Function to search for municipality in the map
+    function searchMunicipality(searchValue) {
+            let found = false;
+            
+            // Reset previous highlights
+            document.querySelectorAll('.allPaths').forEach(e => {
+                e.classList.remove('highlight');
+            });
+
+            // Search for the matching municipality
+            document.querySelectorAll('.allPaths').forEach(e => {
+                const gemeenteName = e.getAttribute('data-gemeente').toLowerCase();
+                const hoofdGemeente = e.getAttribute('data-hoofd-gemeente').toLowerCase();
+
+                if ((gemeenteName == searchValue) || (hoofdGemeente == searchValue)) {
+                    // Highlight the found municipality
+                    const hoveredProvince = e.getAttribute('data-province');
+
+                    // Dim all paths that don't belong to the same province
+                    document.querySelectorAll('.allPaths').forEach(gemeente => {
+                        const province = gemeente.getAttribute('data-province');
+
+                        // If the municipality is not in the same province, dim it
+                        if (province !== hoveredProvince) {
+                            gemeente.classList.add("dimmed");
+                        }
+                    });
+
+                    // Show the name of the hovered municipality
+                    const hoofdGemeente = e.getAttribute('data-hoofd-gemeente');
+                    const gemeente = hoofdGemeente ? hoofdGemeente : e.getAttribute('data-gemeente');
+                    document.getElementById("name").style.opacity = 1;
+                    document.getElementById("data-gemeente").innerText = gemeente;
+                    found = true;
+                    }
+            });
+
+            if (!found) {
+                // Send a message back to the parent page if not found
+                window.parent.postMessage({ type: "notFound" }, "*");
+            }
+        }
+
+        // Listen for search messages from the parent page
+        window.addEventListener("message", (event) => {
+            if (event.data.type === "search") {
+                searchMunicipality(event.data.value);
+            }
+        });
 </script>
 
 

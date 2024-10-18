@@ -27,6 +27,12 @@ def about_us():
 def map():
     return render_template('map.html')
 
+@app.route('/predict-info/<name>')
+def municipality_info(name):
+    # Here, you can add logic to load more detailed information about the municipality
+    # For now, it just displays the name
+    return render_template('predict-info.html', title=name, name=name)
+
 @app.route('/weather')
 def get_weather():
     city = request.args.get('city')
