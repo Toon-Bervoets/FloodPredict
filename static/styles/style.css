@@ -24,6 +24,7 @@ iframe {
     align-items: center;
     overflow: hidden;
     align-self: center;
+    border-radius: 15px;
 }
 
 input, button {
