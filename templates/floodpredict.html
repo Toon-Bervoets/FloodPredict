@@ -24,15 +24,9 @@
         const searchValue = document.getElementById('search-box').value.trim().toLowerCase();
         const iframe = document.getElementById("mapIframe");
 
-        // Reset the iframe to show the map again
-        iframe.src = "/map"; // Reset the iframe to the map page
-
         // Send the search value to the iframe (map page)
         if (searchValue) {
-            // Allow some time for the map to reload before sending the search
-            setTimeout(() => {
-                iframe.contentWindow.postMessage({ type: "search", value: searchValue }, "*");
-            }, 100); // Delay in milliseconds
+            iframe.contentWindow.postMessage({ type: "search", value: searchValue }, "*");
         }
     }
 

@@ -429,6 +429,8 @@
 </body>
 
 <script>
+    let previouslySearchedElement = null; // Variable to store the previously searched municipality
+
     document.querySelectorAll(".allPaths").forEach(e => {
         // Add the id as an additional class without overwriting the existing ones
         e.classList.add(e.id);
@@ -441,6 +443,12 @@
                 document.getElementById('name').style.top = y - 60 + 'px';
                 document.getElementById('name').style.left = x + 10 + 'px';
             };
+
+            // Remove highlight from the previously searched element if hovering over a new one
+            if (previouslySearchedElement) {
+                previouslySearchedElement.classList.remove("hovered");
+                previouslySearchedElement = null; // Reset the previously searched element
+            }
 
             // Apply thicker border and fill color for hovered municipality
             e.classList.add("hovered");
@@ -483,7 +491,6 @@
             const gemeente = hoofdGemeente ? hoofdGemeente : e.getAttribute('data-gemeente');
             window.location.href = `/predict-info/${gemeente}`;
         });
-
     });
 
     // Function to search for municipality in the map
@@ -504,35 +511,29 @@
             const hoofdGemeente = e.getAttribute('data-hoofd-gemeente') ? e.getAttribute('data-hoofd-gemeente').toLowerCase().trim() : "";
             const postcode = e.getAttribute('data-postcode') ? e.getAttribute('data-postcode').toLowerCase().trim() : "";
 
-
             if (gemeenteName === searchValue || hoofdGemeente === searchValue || postcode === searchValue) {
+                // Only apply the highlight without resetting the entire map
                 e.classList.add("hovered");
-                // Highlight the found municipality
-                const hoveredProvince = e.getAttribute('data-province');
+                previouslySearchedElement = e;
 
+                const hoveredProvince = e.getAttribute('data-province');
                 // Dim all paths that don't belong to the same province
                 document.querySelectorAll('.allPaths').forEach(gemeente => {
                     const province = gemeente.getAttribute('data-province');
-
-                    // If the municipality is not in the same province, dim it
                     if (province !== hoveredProvince) {
                         gemeente.classList.add("dimmed");
                     }
                 });
 
-                // Show the name of the hovered municipality
-                const gemeente = hoofdGemeente ? hoofdGemeente : gemeenteName;
-                //document.getElementById("name").style.opacity = 1;
-                //document.getElementById("data-gemeente").innerText = gemeente;
                 found = true;
             }
         });
 
         if (!found) {
-            // Send a message back to the parent page if not found
             window.parent.postMessage({ type: "notFound" }, "*");
         }
     }
+
 
     // Listen for search messages from the parent page
     window.addEventListener("message", (event) => {
@@ -540,6 +541,7 @@
             searchMunicipality(event.data.value);
         }
     });
+
 </script>
 
 
