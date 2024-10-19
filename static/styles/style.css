@@ -130,6 +130,13 @@ input, button {
     p {
         font-size: 14px; /* Smaller font size for mobile */
     }
+
+    h1 {
+        text-align: center;  /* Center the text */
+        margin: 0;           
+        padding: 20px 0;    
+        font-size: 2.5rem;   
+    }
 }
 
 /* Navigation Bar */
@@ -458,6 +465,25 @@ footer a:hover {
 @media (max-width: 480px) {
     .weather-info {
         font-size: 1.2rem; /* Further adjust font size for very small screens */
+    }
+}
+
+/* FLOOD PRDICT */
+@media (max-width: 600px) {
+    #search-container {
+        display: flex;                  /* Enable flexbox layout */
+        flex-direction: column;         /* Stack items vertically */
+        align-items: center;            /* Center items horizontally */
+    }
+
+    #search-box {
+        width: 100%;                   /* Full width for the input */
+        margin-bottom: 10px;           /* Space below the input */
+        max-width: none;                /* Remove max-width restriction */
+    }
+
+    #search-button {
+        width: 100%;                   /* Full width for the button */
     }
 }
 
