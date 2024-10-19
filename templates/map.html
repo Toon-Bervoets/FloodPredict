@@ -81,8 +81,7 @@
     }
 
     .highlight {
-        stroke: red;
-        stroke-width: 3;
+        stroke-width: 3px;
         fill: #598381;
     }
 
@@ -489,53 +488,58 @@
 
     // Function to search for municipality in the map
     function searchMunicipality(searchValue) {
-            let found = false;
-            
-            // Reset previous highlights
-            document.querySelectorAll('.allPaths').forEach(e => {
-                e.classList.remove('highlight');
-            });
+        let found = false;
+        searchValue = searchValue.toLowerCase();
 
-            // Search for the matching municipality
-            document.querySelectorAll('.allPaths').forEach(e => {
-                const gemeenteName = e.getAttribute('data-gemeente').toLowerCase();
-                const hoofdGemeente = e.getAttribute('data-hoofd-gemeente').toLowerCase();
+        // Reset previous highlights
+        document.querySelectorAll('.allPaths').forEach(e => {
+            e.classList.remove("hovered");
+            e.classList.remove('highlight');
+            e.classList.remove("dimmed");
+        });
 
-                if ((gemeenteName == searchValue) || (hoofdGemeente == searchValue)) {
-                    // Highlight the found municipality
-                    const hoveredProvince = e.getAttribute('data-province');
+        // Search for the matching municipality
+        document.querySelectorAll('.allPaths').forEach(e => {
+            const gemeenteName = e.getAttribute('data-gemeente').toLowerCase().trim();
+            const hoofdGemeente = e.getAttribute('data-hoofd-gemeente') ? e.getAttribute('data-hoofd-gemeente').toLowerCase().trim() : "";
+            const postcode = e.getAttribute('data-postcode') ? e.getAttribute('data-postcode').toLowerCase().trim() : "";
 
-                    // Dim all paths that don't belong to the same province
-                    document.querySelectorAll('.allPaths').forEach(gemeente => {
-                        const province = gemeente.getAttribute('data-province');
 
-                        // If the municipality is not in the same province, dim it
-                        if (province !== hoveredProvince) {
-                            gemeente.classList.add("dimmed");
-                        }
-                    });
+            if (gemeenteName === searchValue || hoofdGemeente === searchValue || postcode === searchValue) {
+                e.classList.add("hovered");
+                // Highlight the found municipality
+                const hoveredProvince = e.getAttribute('data-province');
 
-                    // Show the name of the hovered municipality
-                    const hoofdGemeente = e.getAttribute('data-hoofd-gemeente');
-                    const gemeente = hoofdGemeente ? hoofdGemeente : e.getAttribute('data-gemeente');
-                    document.getElementById("name").style.opacity = 1;
-                    document.getElementById("data-gemeente").innerText = gemeente;
-                    found = true;
+                // Dim all paths that don't belong to the same province
+                document.querySelectorAll('.allPaths').forEach(gemeente => {
+                    const province = gemeente.getAttribute('data-province');
+
+                    // If the municipality is not in the same province, dim it
+                    if (province !== hoveredProvince) {
+                        gemeente.classList.add("dimmed");
                     }
-            });
+                });
 
-            if (!found) {
-                // Send a message back to the parent page if not found
-                window.parent.postMessage({ type: "notFound" }, "*");
-            }
-        }
-
-        // Listen for search messages from the parent page
-        window.addEventListener("message", (event) => {
-            if (event.data.type === "search") {
-                searchMunicipality(event.data.value);
+                // Show the name of the hovered municipality
+                const gemeente = hoofdGemeente ? hoofdGemeente : gemeenteName;
+                //document.getElementById("name").style.opacity = 1;
+                //document.getElementById("data-gemeente").innerText = gemeente;
+                found = true;
             }
         });
+
+        if (!found) {
+            // Send a message back to the parent page if not found
+            window.parent.postMessage({ type: "notFound" }, "*");
+        }
+    }
+
+    // Listen for search messages from the parent page
+    window.addEventListener("message", (event) => {
+        if (event.data.type === "search") {
+            searchMunicipality(event.data.value);
+        }
+    });
 </script>
 
 
