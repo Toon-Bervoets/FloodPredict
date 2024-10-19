@@ -196,7 +196,8 @@ nav ul li a:hover {
     font-size: 2rem;            /* Original font size */
     padding: 1rem;              /* Original padding */
     border-radius: 10px;        /* Rounded corners */
-    width: 300px;               /* Set width to a larger value */
+    width: 100%;                /* Full width for smaller screens */
+    max-width: 300px;
 }
 
 .weather-form button {
@@ -429,3 +430,34 @@ footer a {
 footer a:hover {
     text-decoration: underline;
 }
+
+/* Media query for tablet and mobile devices */
+@media (max-width: 768px) {
+    .weather-form {
+        flex-direction: column; /* Stack input and button vertically */
+        align-items: center; /* Center items */
+        gap: 0.5rem; /* Space between input and button */
+    }
+
+    .weather-form input {
+        width: 100%; /* Full width input */
+        max-width: 300px; /* Maximum width for input */
+    }
+
+    .weather-form button {
+        width: 100%; /* Full width button */
+        max-width: 300px; /* Maximum width for button */
+    }
+
+    .weather-info {
+        font-size: 1.5rem; /* Adjust font size for weather info */
+    }
+}
+
+/* Media query for very small screens */
+@media (max-width: 480px) {
+    .weather-info {
+        font-size: 1.2rem; /* Further adjust font size for very small screens */
+    }
+}
+
