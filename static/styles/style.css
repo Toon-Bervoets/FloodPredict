@@ -117,6 +117,7 @@ input, button {
     }
 }
 
+/* Navigation Bar */
 nav {
     background-color: #333;
     color: white;
@@ -126,23 +127,46 @@ nav {
 nav ul {
     list-style-type: none;
     padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: flex-start; /* Align links to the left */
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
 }
 
 nav ul li {
-    display: inline; /* Display items in a line */
     margin-right: 20px; /* Space between items */
 }
 
 nav ul li a {
-    color: white; /* Text color */
-    text-decoration: none; /* Remove underline */
-    padding: 10px; /* Space around text */
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    display: block; /* Ensure the clickable area covers the whole space */
 }
 
 nav ul li a:hover {
-    background-color: #555; /* Background color on hover */
+    background-color: #555;
     border-radius: 10px;
 }
+
+/* Responsive behavior for mobile */
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column; /* Stack links vertically */
+        align-items: center; /* Center the links */
+    }
+
+    nav ul li {
+        margin-right: 0; /* Remove right margin */
+        margin-bottom: 10px; /* Add space between items vertically */
+    }
+
+    nav ul li a {
+        width: 100%; /* Take full width for better tapping area */
+        text-align: center; /* Center the text */
+    }
+}
+
 
 /* Weather Form Styles */
 .weather-form {
