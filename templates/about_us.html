@@ -16,8 +16,8 @@
     <div class="row">
         <div class="col-md-6 col-12">
             {% for member in [
-                {"name": "Manon Annet", "role": "Machine Learning Engineer, Full Stack Web Developer", "project_role": "Completer Finisher", "img": "manon.png"},
-                {"name": "Toon Bervoets", "role": "Full Stack Web Developer, Website Developer", "project_role": "Plant, Specialist", "img": "toon.png"},
+                {"name": "Manon Annet", "role": "Machine Learning Engineer", "project_role": "Completer Finisher", "img": "manon.png"},
+                {"name": "Toon Bervoets", "role": "Full Stack Web Developer", "project_role": "Plant, Specialist", "img": "toon.png"},
                 {"name": "Isabelle Boogaerts", "role": "Algorithm Engineer", "project_role": "Implementer", "img": "isabelle.png"}
             ] %}
             <div class="team-member">
@@ -33,9 +33,9 @@
 
         <div class="col-md-6 col-12">
             {% for member in [
-                {"name": "Lauranne Brouwers", "role": "Machine Learning Engineer, Website Developer", "project_role": "Resource Investigator", "img": "lauranne.png"},
+                {"name": "Lauranne Brouwers", "role": "Machine Learning Engineer", "project_role": "Resource Investigator", "img": "lauranne.png"},
                 {"name": "Doran De Gersem", "role": "Machine Learning Engineer", "project_role": "Shaper, Monitor Evaluator", "img": "doran.png"},
-                {"name": "Mil Fonteyn", "role": "Algorithm Engineer, Website Developer", "project_role": "Co-ordinator", "img": "mil.png"}
+                {"name": "Mil Fonteyn", "role": "Algorithm Engineer", "project_role": "Co-ordinator", "img": "mil.png"}
             ] %}
             <div class="team-member">
                 <img src="{{ url_for('static', filename='/img/' + member.img) }}" />

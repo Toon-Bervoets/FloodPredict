@@ -253,6 +253,7 @@ nav ul li a:hover {
     font-size: 1.5rem; 
     transition: background-color 0.3s;
     text-decoration: none;
+    display: inline-block; /* Keep buttons inline */
 }
 
 .btn:hover {
@@ -261,6 +262,29 @@ nav ul li a:hover {
 
 .btn-spacing {
     margin-top: 20px;
+}
+
+/* Flex container for buttons */
+.button-group {
+    display: flex;
+    justify-content: flex-start; /* Align buttons to the left */
+    gap: 10px; /* Space between buttons */
+    flex-wrap: wrap; /* Allow buttons to wrap on smaller screens */
+    margin-top: 1rem; /* Spacing from content above */
+}
+
+/* Adjust buttons on mobile */
+@media (max-width: 768px) {
+    .btn {
+        width: auto; /* Auto width to prevent stretching */
+        padding: 0.75rem 1rem; /* Adjust padding for mobile */
+        font-size: 1.2rem; /* Slightly smaller font size */
+    }
+
+    /* Ensure buttons wrap and stay responsive */
+    .button-group {
+        justify-content: center; /* Center on smaller screens */
+    }
 }
 
 
@@ -276,7 +300,7 @@ nav ul li a:hover {
 /* Parallax styles */
 .parallax {
     position: relative;
-    height: 400px; 
+    height: 400px; /* Default height for large screens */
     overflow: hidden;
 }
 
@@ -305,7 +329,29 @@ nav ul li a:hover {
     font-size: 5rem;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Text shadow for contrast */
     color: #ffffff; /* Title color */
+    padding: 0 1rem; /* Add some padding for smaller screens */
 }
+
+/* Media query for smaller screens (phones, tablets) */
+@media (max-width: 768px) {
+    .parallax {
+        height: 300px; /* Reduce height for tablets and smaller screens */
+    }
+    .parallax-title {
+        font-size: 3rem; /* Smaller text size for phones and tablets */
+    }
+}
+
+/* Media query for very small screens (small phones) */
+@media (max-width: 480px) {
+    .parallax {
+        height: 250px; /* Further reduce height for small phones */
+    }
+    .parallax-title {
+        font-size: 2rem; /* Smaller text for very small screens */
+    }
+}
+
 
 /* Info box styles */
 .info-box {
