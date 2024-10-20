@@ -14,9 +14,13 @@
     * {
         margin: 0;
         padding: 0;
+        box-sizing: border-box;
     }
 
     body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         overflow-x: hidden;
         overflow-y: hidden;
         background-color: #2a2550;
@@ -38,6 +42,7 @@
     svg path {
         cursor: pointer;
         transition: fill 0.3s, stroke-width 0.3s;
+        opacity: 0.9;
     }
 
     html, body {
@@ -66,24 +71,69 @@
     }
 
     /* Default colors */
-    .vlaanderen {
-        fill: #a0a0a0;
-        stroke-width: 1px; 
-    }
 
     .hovered {
-        fill: #598381 !important; 
         stroke-width: 3px; 
+        opacity: 1;
     }
 
     .dimmed {
-        fill: #2a255081 !important;
+        opacity: 0.5;
     }
 
     .highlight {
         stroke-width: 3px;
         fill: #598381;
     }
+
+    #legend-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center; /* Center items horizontally */
+        margin-top: -20px;
+    }
+
+    #legend-risk {
+        display: flex;
+        align-items: center;
+        justify-content: center; /* Center the legend */
+    }
+
+    #gradient-bar {
+        display: flex;
+        height: 15px;
+        margin: 0 10px;
+    }
+
+    .gradient-block {
+        width: 30px;
+        height: 100%;
+        background-color: transparent;
+        border-left: 1px solid #fff; /* Creates white space between the blocks */
+        border-right: 1px solid #fff; /* Creates white space between the blocks */
+    }
+
+    /* Applying the gradient colors to each block */
+    .gradient-block:nth-child(1) {
+        background-color: #5a9e51;
+    }
+    .gradient-block:nth-child(2) {
+        background-color: #87b453;
+    }
+    .gradient-block:nth-child(3) {
+        background-color: #f2dc5d;
+    }
+    .gradient-block:nth-child(4) {
+        background-color: #f0a64b;
+    }
+    .gradient-block:nth-child(5) {
+        background-color: #e4572e;
+    }
+    .gradient-block:nth-child(6) {
+        background-color: #d12f2f;
+    }
+
 
 </style>
 
@@ -426,10 +476,71 @@
 
     </svg>
 
+    <div id="legend-container">
+        <legend id="legend-risk">
+            <span id="min-label">Low</span>
+            <div id="gradient-bar">
+                <div class="gradient-block"></div>
+                <div class="gradient-block"></div>
+                <div class="gradient-block"></div>
+                <div class="gradient-block"></div>
+                <div class="gradient-block"></div>
+                <div class="gradient-block"></div>
+            </div>
+            <span id="max-label">High</span>
+        </legend>
+    </div>    
+    
+
 </body>
 
 <script>
     let previouslySearchedElement = null; // Variable to store the previously searched municipality
+    let floodData = {}; // To hold the flood scale data
+
+    // Fetch the flood scale data from the JSON file
+    fetch('api/floodscale')
+        .then(response => response.json())
+        .then(data => {
+            // Determine min and max values
+            const values = Object.values(data);
+            const minValue = Math.min(...values);
+            const maxValue = Math.max(...values);
+
+            // Set the min and max labels
+            document.getElementById("min-label").innerText = minValue.toFixed(0);
+            document.getElementById("max-label").innerText = maxValue.toFixed(0);
+
+            // Function to interpolate color based on value
+            function getColor(value) {
+                const percentage = (value - minValue) / (maxValue - minValue);
+                // Define colors for the gradient
+                const color1 = [90, 158, 81];  // #5a9e51
+                const color2 = [242, 220, 93];  // #f2dc5d
+                const color3 = [228, 87, 46];  // #e4572e
+                const color4 = [209, 47, 47];  // #d12f2f
+
+                // Use a gradient interpolation
+                let color;
+                if (percentage <= 0.33) {
+                    color = color1.map((c, i) => Math.round(c + (color2[i] - c) * (percentage / 0.33)));
+                } else if (percentage <= 0.66) {
+                    color = color2.map((c, i) => Math.round(c + (color3[i] - c) * ((percentage - 0.33) / 0.33)));
+                } else {
+                    color = color3.map((c, i) => Math.round(c + (color4[i] - c) * ((percentage - 0.66) / 0.34)));
+                }
+                return `rgb(${color.join(',')})`;
+            }
+
+            // Apply color to each municipality based on the value
+            for (const [municipality, value] of Object.entries(data)) {
+                const pathElement = document.getElementById(municipality);  // Ensure municipality ID matches the SVG path ID
+                if (pathElement) {
+                    pathElement.style.fill = getColor(value);
+                }
+            }
+        })
+        .catch(error => console.error('Error loading the JSON data:', error));
 
     document.querySelectorAll(".allPaths").forEach(e => {
         // Add the id as an additional class without overwriting the existing ones

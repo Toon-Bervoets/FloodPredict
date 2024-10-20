@@ -1,7 +1,9 @@
-from flask import Flask, render_template, request
+from flask import Flask, jsonify, render_template, request
 from weather import get_current_weather
 from waitress import serve
 from datetime import datetime, timezone, timedelta
+import json
+import os
 
 app = Flask(__name__)
 
@@ -22,6 +24,17 @@ def weather_predict():
 @app.route('/about-us')
 def about_us():
     return render_template('about_us.html')
+
+@app.route('/api/floodscale', methods=['GET'])
+def floodscale_data():
+    # Define the path to the JSON file
+    json_path = os.path.join('data', 'floodscale.json')
+    try:
+        with open(json_path) as json_file:
+            flood_data = json.load(json_file)  # Load the JSON data
+            return jsonify(flood_data)  # Return the data as a JSON response
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500  # Return error if something goes wrong
 
 @app.route('/map')
 def map():
