@@ -14,7 +14,7 @@
     </p>
     <br>
     <div class="row">
-        <div class="col-md-6 col-12">
+        <div class="col-md-6 col-12 nopadding">
             {% for member in [
                 {"name": "Manon Annet", "role": "Machine Learning Engineer", "project_role": "Plant, Team worker", "img": "manon.png"},
                 {"name": "Toon Bervoets", "role": "Full Stack Web Developer", "project_role": "Monitor Evaluator, Resource Investigator", "img": "toon.png"},
@@ -22,7 +22,7 @@
             ] %}
             <div class="team-member">
                 <img src="{{ url_for('static', filename='/img/' + member.img) }}"/>
-                <div class="member-info">
+                <div class="col nopadding">
                     <h3>{{ member.name }}</h3>
                     <h6 class="role">{{ member.role }}</h6>
                     <h6 class="project-role">{{ member.project_role }}</h6>
@@ -31,7 +31,7 @@
             {% endfor %}
         </div>
 
-        <div class="col-md-6 col-12">
+        <div class="col-md-6 col-12 nopadding">
             {% for member in [
                 {"name": "Lauranne Brouwers", "role": "Machine Learning Engineer", "project_role": "Shaper, Coordinator", "img": "lauranne.png"},
                 {"name": "Doran De Gersem", "role": "Machine Learning Engineer", "project_role": "Plant, Specialist", "img": "doran.png"},
@@ -39,7 +39,7 @@
             ] %}
             <div class="team-member">
                 <img src="{{ url_for('static', filename='/img/' + member.img) }}" />
-                <div class="member-info">
+                <div class="col nopadding">
                     <h3>{{ member.name }}</h3>
                     <h6 class="role">{{ member.role }}</h6>
                     <h6 class="project-role">{{ member.project_role }}</h6>
