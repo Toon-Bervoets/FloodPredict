@@ -1,0 +1,122 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    background-color: #2a2550;
+}
+
+#name {
+    position: absolute;
+    background-color: rgb(255, 255, 255);
+    width: fit-content;
+    opacity: 0;
+    border-radius: 5px;
+    border: 3px solid #598381;
+    padding: 0px 5px;
+    font-size: 1.5rem;
+
+}
+
+
+svg path {
+    cursor: pointer;
+    transition: fill 0.3s, stroke-width 0.3s;
+    opacity: 0.9;
+}
+
+html, body {
+        width: 180%;
+        height: 180%;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center; 
+        align-items: center;    
+        background-color: #ffffffcf;
+    }
+
+#map-container {
+    display: flex;
+    justify-content: flex-start; 
+    align-items: center;     
+    padding: 50px;          
+}
+
+#allSvg {
+    width: 80%;             
+    height: auto;           
+    max-height: 80%;
+    margin-left: -100px;
+}
+
+/* Default colors */
+
+.hovered {
+    stroke-width: 3px; 
+    opacity: 1;
+}
+
+.dimmed {
+    opacity: 0.5;
+}
+
+.highlight {
+    stroke-width: 3px;
+    fill: #598381;
+}
+
+#legend-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; /* Center items horizontally */
+    margin-top: -20px;
+}
+
+#legend-risk {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Center the legend */
+}
+
+#gradient-bar {
+    display: flex;
+    height: 15px;
+    margin: 0 10px;
+}
+
+.gradient-block {
+    width: 30px;
+    height: 100%;
+    background-color: transparent;
+    border-left: 1px solid #fff; /* Creates white space between the blocks */
+    border-right: 1px solid #fff; /* Creates white space between the blocks */
+}
+
+/* Applying the gradient colors to each block */
+.gradient-block:nth-child(1) {
+    background-color: #5a9e51;
+}
+.gradient-block:nth-child(2) {
+    background-color: #87b453;
+}
+.gradient-block:nth-child(3) {
+    background-color: #f2dc5d;
+}
+.gradient-block:nth-child(4) {
+    background-color: #f0a64b;
+}
+.gradient-block:nth-child(5) {
+    background-color: #e4572e;
+}
+.gradient-block:nth-child(6) {
+    background-color: #d12f2f;
+}
