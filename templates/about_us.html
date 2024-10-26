@@ -21,7 +21,7 @@
                 {"name": "Isabelle Boogaerts", "role": "Algorithm Engineer", "project_role": "Implementer, Completer Finisher", "img": "isabelle.png"}
             ] %}
             <div class="team-member">
-                <img src="{{ url_for('static', filename='/img/' + member.img) }}"/>
+                <img src="{{ url_for('static', filename='/img/' + member.img) }}" class="member-image"/>
                 <div class="col nopadding">
                     <h3>{{ member.name }}</h3>
                     <h6 class="role">{{ member.role }}</h6>
@@ -38,7 +38,7 @@
                 {"name": "Mil Fonteyn", "role": "Algorithm Engineer", "project_role": "Specialist, Implementer", "img": "mil.png"}
             ] %}
             <div class="team-member">
-                <img src="{{ url_for('static', filename='/img/' + member.img) }}" />
+                <img src="{{ url_for('static', filename='/img/' + member.img) }}" class="member-image"/>
                 <div class="col nopadding">
                     <h3>{{ member.name }}</h3>
                     <h6 class="role">{{ member.role }}</h6>

@@ -29,16 +29,16 @@ iframe {
 
 @media (max-width: 900px) {
     iframe {
-        width: 800px;
-        height: 300px;
+        width: 750px;
+        height: 270px;
     }
 }
 
 /* map for mobile devices */
 @media (max-width: 600px) {
     iframe {
-        width: 550px;
-        height: 225px;
+        width: 450px;
+        height: 190px;
     }
 }
 
@@ -200,6 +200,26 @@ nav ul li a:hover {
         width: 100%; /* Take full width for better tapping area */
         text-align: center; /* Center the text */
     }
+
+    .row {
+        flex-direction: column; /* Stack rows vertically */
+    }
+    .team-member {
+        flex-direction: row; /* Keep them in a row on smaller screens */
+        width: 200%;
+    }
+    .member-image {
+        width: 50px; /* Adjust width for smaller screens */
+        height: 50px; /* Adjust height for smaller screens */
+        margin-right: 10px; /* Space between image and text */
+    }
+    .col-12 { /* Ensure full width for columns on small screens */
+        flex: 0 0 100%; /* Full width */
+        max-width: 100%; /* Full width */
+    }
+    .team-member img {
+        margin-bottom: 0px; /* Space below image */
+    }
 }
 
 
@@ -275,8 +295,9 @@ nav ul li a:hover {
 
 .team-member {
     display: flex;
+    flex-direction: row;
     align-items: center;
-    margin: 20px 0;
+    margin-bottom: 20px;
 }
 
 .team-member img {
@@ -287,6 +308,14 @@ nav ul li a:hover {
     border: 2px solid black;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
     margin-right: 20px; /* Space between image and text */
+}
+
+.member-image {
+    width: 60px; /* Set a fixed width for images */
+    height: 60px; /* Set a fixed height to maintain aspect ratio */
+    object-fit: cover; /* Ensure the image covers the element without distortion */
+    border-radius: 50%; /* Makes the image circular */
+    margin-right: 10px; /* Space between image and text */
 }
 
 .member-info h3 {
@@ -409,6 +438,27 @@ nav ul li a:hover {
     }
     .parallax-title {
         font-size: 2rem; /* Smaller text for very small screens */
+    }
+    .team-member {
+        flex-direction: column; /* Stack image on top of the text */
+        align-items: center; /* Center align items */
+        text-align: center; /* Center text */
+        width: 200%;
+    }
+    .member-image {
+        width: 40px; /* Smaller size for very small screens */
+        height: 40px; /* Smaller size for very small screens */
+        margin-bottom: 10px; /* Space between image and text */
+    }
+    .member-info {
+        flex-grow: 0; /* Do not take available space, keep as is */
+    }
+    .col-12 { /* Ensure full width for columns on small screens */
+        flex: 0 0 100%; /* Full width */
+        max-width: 100%; /* Full width */
+    }
+    .team-member img {
+        margin-bottom: 0px; /* Space below image */
     }
 }
 
@@ -563,3 +613,19 @@ footer a:hover {
 .col-10 { flex: 0 0 83.333%; max-width: 83.333%; }
 .col-11 { flex: 0 0 91.667%; max-width: 91.667%; }
 .col-12 { flex: 0 0 100%; max-width: 100%; }
+/* Columns for medium screens (≥768px) */
+.col-md-1 { flex: 0 0 8.333%; max-width: 8.333%; }
+.col-md-2 { flex: 0 0 16.667%; max-width: 16.667%; }
+.col-md-3 { flex: 0 0 25%; max-width: 25%; }
+.col-md-4 { flex: 0 0 33.333%; max-width: 33.333%; }
+.col-md-5 { flex: 0 0 41.667%; max-width: 41.667%; }
+.col-md-6 { flex: 0 0 50%; max-width: 50%; }
+.col-md-7 { flex: 0 0 58.333%; max-width: 58.333%; }
+.col-md-8 { flex: 0 0 66.667%; max-width: 66.667%; }
+.col-md-9 { flex: 0 0 75%; max-width: 75%; }
+.col-md-10 { flex: 0 0 83.333%; max-width: 83.333%; }
+.col-md-11 { flex: 0 0 91.667%; max-width: 91.667%; }
+.col-md-12 { flex: 0 0 100%; max-width: 100%; }
+
+/* Auto layout (takes up available space) */
+.col-md { flex-basis: 0; flex-grow: 1; max-width: 100%; }
