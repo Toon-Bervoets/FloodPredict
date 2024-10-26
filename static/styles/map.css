@@ -101,7 +101,7 @@ html, body {
     border-right: 1px solid #fff; /* Creates white space between the blocks */
 }
 
-/* Applying the gradient colors to each block */
+/* Applying the gradient colors to each block */ 
 .gradient-block:nth-child(1) {
     background-color: #5a9e51;
 }
