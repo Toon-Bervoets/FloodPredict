@@ -28,7 +28,7 @@ def about_us():
 @app.route('/api/floodscale', methods=['GET'])
 def floodscale_data():
     # Define the path to the JSON file
-    json_path = os.path.join('data', 'floodscale.json')
+    json_path = os.path.join('assets', 'data/floodscale.json')
     try:
         with open(json_path) as json_file:
             flood_data = json.load(json_file)  # Load the JSON data
