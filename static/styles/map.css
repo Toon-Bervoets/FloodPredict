@@ -34,8 +34,8 @@ svg path {
 }
 
 html, body {
-        width: 180%;
-        height: 180%;
+        width: 100%;
+        height: 100%;
         margin: 0;
         padding: 0;
         display: flex;
@@ -75,11 +75,11 @@ html, body {
 }
 
 #legend-container {
-    display: flex;
+    grid-area: legend;
+    display: block;
     flex-direction: column;
     justify-content: center;
     align-items: center; /* Center items horizontally */
-    margin-top: -20px;
 }
 
 #legend-risk {
@@ -120,4 +120,398 @@ html, body {
 }
 .gradient-block:nth-child(6) {
     background-color: #d12f2f;
+}
+
+
+#general-wrapper {
+    width: 100%;
+    max-width: 800px;
+    padding: 10px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    grid-gap: 0;
+}
+
+#general-wrapper > *:nth-child(2) {
+    margin-top: 10px;
+}
+#general-wrapper > [hidden] + *:nth-child(2) {
+    margin-top: 0;
+}
+
+main {
+    width: 100%;
+    display: grid;
+    grid-template:
+        "regionselect provinceselected" auto
+        "svg-wrapper svg-wrapper" 1fr
+        "pickers pickers" auto / auto 1fr;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding-top: 10px;
+}
+
+
+#selectnis {
+    --search-icon-size: var(--nis-selector-search-icon-size, 1em);
+    grid-area: selectnis;
+    margin: var(4px, 10px) 0;
+    padding-left: 2.4em;
+    padding-left: calc(1.4em + var(--search-icon-size));
+    position: relative;
+    background: white;
+}
+
+article {
+    grid-area: tab;
+    display: grid;
+    grid-template: "tab" auto / 100%;
+    position: relative;
+    align-items: start;
+}
+
+slot {
+    display: contents;
+}
+
+.region-display {
+    font-size: 16px; /* Adjust font size as needed */
+    font-weight: bold;
+    margin-bottom: 10px; /* Space below the display */
+}
+
+.close-button {
+    background: none; /* No background for the button */
+    border: none; /* No border */
+    color: white; /* Close button text color */
+    font-size: 1.5em; /* Size of the close button */
+    cursor: pointer; /* Change cursor on hover */
+}
+
+
+article ::slotted(*), article > * {
+    grid-area: tab;
+    width: 100%;
+    transition: opacity 1s;
+    position: relative;
+    z-index: 6;
+}
+
+#last-update {
+    grid-area: last-update;
+    color: white;
+    display: block;
+    font-size: var(--font-s-xs, 10px);
+    font-family: var(--font-alt);
+    font-weight: var(--font-w-m, 500);
+    align-self: center;
+    text-transform: var(--ticker-label-text-transform, none);
+}
+
+article ::slotted(*[hidden]), article ::slotted(*.tab-hidden), article > *[hidden], article > *.tab-hidden {
+    visibility: hidden;
+    pointer-events: none;
+    position: absolute;
+    left: 0;
+    opacity: 0;
+    z-index: 8;
+}
+
+[data-view-name] {
+    grid-area: tab;
+}
+
+:host {
+    margin: 0;
+    padding: 10px;
+    padding-bottom: calc(var(.85, 1)* 10px);
+    padding-right: calc(10px* 2.5);
+    list-style: none;
+    cursor: pointer;
+    flex: 0 0 auto;
+    width: auto;
+    border-radius: 4px;
+    border: 1px solid #CCCCCC;
+    box-sizing: border-box;
+    appearance: none;
+    font: var(var(--font-w-m) var(--font-s-s) var(--font-alt), inherit);
+    background-position: right 10px top 50%;
+    color: inherit;
+    padding-right: 2.25em;
+    display: block;
+}
+
+#region-select {
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    justify-self: start;
+    height: 100%;
+    cursor: pointer;
+    transition: opacity var(--duration, 0.4s);
+    position: relative;
+    grid-area: regionselect;
+    background-color: #acbfd3;
+    color: black; 
+    border-radius: 4px; 
+    margin: 0;
+    font-size: 0.9em;
+    padding: 0.5em 1em;
+    font-family: var(--font-alt);
+    font-weight: var(--font-w-m);
+}
+
+#region-selected-container {
+    width: fit-content;
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between; 
+    padding: 0.2em 0.5em;
+    border-radius: 4px; 
+    background-color: #2a2550; 
+    color: white;
+    margin: 0; 
+}
+#region-selected-container.hidden {
+    display: none;
+    opacity: 0;
+}
+#region-selected-container.visible {
+    opacity: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+#region-selected {
+    display: inline;
+    align-items: center;
+    justify-content: center;
+    justify-self: start;
+    align-self: center;
+    height: 100%;
+    background: #2a2550;
+    color: white;
+    padding: 0 2em 0 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: opacity var(--duration, 0.4s);
+    position: relative;
+    font-size: 0.9em; /* Adjust font size as needed */
+    padding: 0.5em 1em;
+    font-family: var(--font-alt);
+    font-weight: var(--font-w-m);
+}
+
+
+/* Style for the close button */
+#close-region {
+    background: transparent; /* Transparent background */
+    border: none; /* No border */
+    color: white; /* Change to a visible color (black) */
+    font-size: 1.5em; /* Increase font size */
+    margin-left: 0.5em; /* Space between province name and button */
+    cursor: pointer; /* Pointer cursor */
+    display: none; /* Hidden initially */
+}
+
+#close-region:hover {
+    opacity: 0.8; 
+}
+#region-selected[hidden] {
+    display: none;
+}
+
+#close-region[hidden] {
+    display: none; 
+}
+
+main > * {
+    position: relative;
+    z-index: 2;
+}
+
+/* Host styles for inline select */
+:host(.inline-select) {
+    font-family: var(--font-alt);
+    font-size: var(--font-s-s, 12px);
+    font-weight: var(--font-w-m, 500);
+    justify-self: start;
+    background-color: #E6E8ED;
+    color: black;
+    border: 1px solid #E6E8ED;
+    border-radius: 4px;
+}
+
+
+
+:root, :host, body {
+    --font: "Stag", serif;
+    --font-alt: "Stag Sans", sans-serif;
+    --padding: 20px;
+    --border-radius: 4px;
+    --accent-color: red;
+    --font-s-xs: 10px;
+    --font-s-s: 12px;
+    --font-w-r: 400;
+    --font-w-m: 500;
+    --inline-select-background: #E6E8ED;
+    --inline-select-background-constrast: black;
+}
+
+#loader-svg {
+    width: 1em;
+    height: 1em;
+    grid-area: last-update;
+    justify-self: end;
+}
+
+main > #svg-wrapper {
+    z-index: 1;
+}
+
+#svg-wrapper {
+    position: relative;
+    display: grid;
+    grid-template:
+        "svg" auto
+        "legend" auto / 100%;
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    grid-area: svg-wrapper;
+    margin: var(--padding, 20px) 0;
+    box-sizing: border-box;
+}
+
+#svg-zoom-container {
+    align-self: center; /* Center the zoom container */
+    overflow: visible; /* Allow the zoomed content to overflow */
+    grid-area: svg; /* Place it in the same grid area as the svg */
+    width: 100%; /* Ensure it takes full width */
+    height: auto; /* Dynamic height based on content */
+    position: relative; /* Position relative to handle transformation */
+    transition: transform 0.3s ease-out; /* Smooth transition for zooming */
+}
+
+
+div {
+    display: block;
+    unicode-bidi: isolate;
+}
+
+style attribute {
+    --turnout-percentage-max: 99.72;
+    --turnout-percentage-min: 53.69;
+    --turnout-percentage-max-txt: "100";
+    --turnout-percentage-min-txt: "54";
+}
+
+svg {
+    width: 100%; /* Fill the zoom container */
+    height: auto; /* Maintain aspect ratio */
+    overflow: visible; /* Ensure content can overflow */
+}
+
+svg:not(:root) {
+    overflow-clip-margin: content-box;
+    overflow: hidden;
+}
+
+legend {
+    grid-area: legend;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: var(--padding);
+    font-size: var(--font-s-s, 12px);
+    font-family: var(--font-alt);
+    grid-gap: .5em;
+    transition: all var(--duration, .4s);
+}
+
+#legend-result[hidden] {
+    display: block;
+    opacity: 0;
+}
+
+legend {
+    display: block;
+    unicode-bidi: isolate;
+    padding-inline: 2px;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+body.standalone {
+    overflow: scroll;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+:host([display-type="map::results"]) #legend-turnout, :host(:not([display-type])) #legend-turnout, :host([display-type="map::turnout"]) #legend-result {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(100%);
+}
+
+#display-type {
+    grid-area: pickers;
+    justify-self: start;
+}
+#year-select {
+    grid-area: pickers;
+    justify-self: end;
+}
+
+#year-select, #display-type {
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    cursor: pointer;
+    transition: opacity var(--duration, 0.4s);
+    position: relative;
+    background-color: #acbfd3;
+    color: black;
+    border-radius: 4px;
+    margin: 0;
+    font-size: 0.9em;
+    padding: 0.5em 1em;
+    font-family: var(--font-alt);
+    font-weight: var(--font-w-m);
+}
+
+#year-select .active, #display-type .active {
+    background-color: #2a2550;
+    color: white;
+}
+
+main ::slotted(.before-active) {
+    border-right: none;
+}
+main ::slotted(.first) {
+    border-top-left-radius: var(--border-radius, 10px);
+    border-bottom-left-radius: var(--border-radius, 10px);
+}
+
+main ::slotted(.last) {
+    border-top-right-radius: var(--border-radius, 10px);
+    border-bottom-right-radius: var(--border-radius, 10px);
+}
+
+main ::slotted(.active) {
+    background: var(--inline-tabs-selected-background, var(--accent-color, #177E89));
+    color: var(--inline-tabs-selected-background-contrast, white);
+    border-color: var(--inline-tabs-selected-background, var(--accent-color, #177E89));
 }

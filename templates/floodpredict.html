@@ -5,7 +5,12 @@
 {% block content %}
 <div class="container text-center">
     <!-- Embed the map -->
-    <iframe src="/map" id="mapIframe" width="1000" height="600" frameborder="2"></iframe>
+    <div class="snippet fjs-snippet" data-privacy-category="socialmedia" style="min-height: auto;">
+        <iframe src="/map" id="mapIframe" width="auto" frameborder="2"></iframe>
+        <script type="text/javascript"
+            src="https://valley.hln.be/custom-build/verkiezingen-2024-local/utilities/iframe.js"></script>
+    </div>
+    
 
     <!-- Searchbox under the map -->
     <div id="search-container" style="margin-top: 20px;">
