@@ -1,12 +1,13 @@
-from flask import Flask, jsonify, render_template, request
+from flask import Flask, jsonify, render_template, request, redirect, url_for
 from weather import get_current_weather
+from city_form import get_last_five_days, process_form_data
 from waitress import serve
 from datetime import datetime, timezone, timedelta
 import json
 import os
 
 app = Flask(__name__)
-
+app.secret_key="banaanaandeboom"
 
 @app.route('/')
 @app.route('/index')
@@ -45,6 +46,23 @@ def municipality_info(name):
     # Here, you can add logic to load more detailed information about the municipality
     # For now, it just displays the name
     return render_template('predict-info.html', title=name, name=name)
+
+@app.route('/city_form', methods=['GET', 'POST'])
+def city_form():
+    days = get_last_five_days()
+    if request.method == 'POST':
+        city = request.form.get('city')
+        day_values = [request.form.get(f'day-{i}') for i in range(5)]
+        
+        # Process form data
+        results, success = process_form_data(city, day_values)
+        
+        if success:
+            return render_template('city_form.html', days=days, results=results)
+        else:
+            return redirect(url_for('city_form'))
+
+    return render_template('city_form.html', days=days)
 
 @app.route('/weather')
 def get_weather():

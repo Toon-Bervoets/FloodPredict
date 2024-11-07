@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block title %}Flood Prediction Simulator{% endblock %}
+
+{% block content %}
+<link href="{{ url_for('static', filename='styles/loading.css') }}" rel="stylesheet" />
+<link href="{{ url_for('static', filename='styles/form.css') }}" rel="stylesheet" />
+
+<h1>Flood Prediction Simulator</h1>
+
+<div class="form-info">
+    <p class="jumbotron-text">This is a prediction app that uses a machine learning (ML) model to analyze recent rainfall in a <strong>selected city</strong>, providing a demonstration prediction that isn’t based on real weather data.
+
+        <br> Enter rainfall levels for the <strong>past five days</strong> to help the model assess recent trends and predict today’s flood risk, with options from "<strong>None</strong>" to "<strong>High.</strong>"</p>
+    
+    <p class="jumbotron-text">Once submitted, the program calculates a flood risk prediction for your city based on these inputs.</p>
+</div>
+
+<form action="{{ url_for('city_form') }}" method="post" onsubmit="showLoadingScreen()">
+    <label for="city">City or Postcode:</label>
+    <input type="text" id="city" name="city" required>
+
+    <div class="day-dropdowns">
+        {% for day in days %}
+            <div class="day-dropdown">
+                <label for="day-{{ loop.index0 }}">{{ day }}:</label>
+                <select id="day-{{ loop.index0 }}" name="day-{{ loop.index0 }}" required>
+                    <option value="">Select level</option>
+                    <option value="none">None</option>
+                    <option value="low">Low</option>
+                    <option value="medium">Medium</option>
+                    <option value="high">High</option>
+                </select>
+            </div>
+        {% endfor %}
+    </div>
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="flash-messages">
+                {% for message in messages %}
+                    <p>{{ message }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+
+
+    <button type="submit">Submit</button>
+
+    <!-- Loading Screen -->
+    <div id="loading">
+        <img src="{{ url_for('static', filename='img/loading_cloud.gif') }}" alt="Loading...">
+        <p>Loading, please wait...</p>
+    </div>
+
+    {% if results %}
+        <div class="results">
+            <h2>Results for {{ results.city }}</h2>
+            <p>Summary: {{ results.summary }}</p>
+            <div class="day-levels">
+                {% for level in results.levels %}
+                    <div class="day-level">{{ level }}</div>
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+</form>
+
+<script src="{{ url_for('static', filename='scripts/loading.js') }}"></script>
+{% endblock %}

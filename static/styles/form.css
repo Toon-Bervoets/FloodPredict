@@ -1,0 +1,143 @@
+* {
+    box-sizing: border-box;
+}
+
+form {
+    max-width: 850px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #555555;
+}
+
+input[type="text"], select {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #dddddd;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+
+input[type="text"]:focus, select:focus {
+    border-color: #007BFF;
+    outline: none;
+}
+
+.day-dropdowns {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* Five equal columns for desktop */
+    gap: 20px; /* Space between dropdowns */
+    margin-bottom: 15px;
+}
+
+.day-dropdown {
+    display: flex;
+    flex-direction: column;
+}
+
+.day-dropdown select {
+    width: 100%;
+    height: 40px;
+    padding: 8px;
+}
+
+@media (max-width: 768px) {
+    .day-dropdowns {
+        grid-template-columns: 1fr; /* Stack all dropdowns in one column on mobile */
+    }
+}
+
+button {
+    width: 100%;
+    background-color: #177E89;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 1rem 1rem;
+    font-size: 1.5rem; 
+    transition: background-color 0.3s;
+    text-decoration: none;
+    cursor: pointer;
+    font-family: "Times New Roman", Times, serif;
+}
+
+button:hover {
+    background-color: #08605F;
+}
+
+.flash-messages {
+    color: #d9534f;
+    background-color: #f2dede;
+    border: 1px solid #ebccd1;
+    padding: 15px;
+    border-radius: 5px;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    animation: fadeIn;
+    font-size: 1.5rem; 
+    list-style: none; 
+    padding: 0;
+}
+
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.results {
+    margin-top: 20px;
+    padding: 15px;
+    border: 1px solid #dddddd;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    color: #333333;
+}
+
+.day-levels {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.day-level {
+    background-color: #e0f7fa;
+    color: #177E89;
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.form-info {
+    max-width: 850px;
+    margin-top: 1rem;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 1rem 2rem 1rem 2rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+    margin-bottom: 20px;
+}
+
