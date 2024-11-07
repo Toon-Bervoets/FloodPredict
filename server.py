@@ -47,8 +47,8 @@ def municipality_info(name):
     # For now, it just displays the name
     return render_template('predict-info.html', title=name, name=name)
 
-@app.route('/city_form', methods=['GET', 'POST'])
-def city_form():
+@app.route('/simulator', methods=['GET', 'POST'])
+def simulator():
     days = get_last_five_days()
     if request.method == 'POST':
         city = request.form.get('city')
@@ -60,7 +60,7 @@ def city_form():
         if success:
             return render_template('city_form.html', days=days, results=results)
         else:
-            return redirect(url_for('city_form'))
+            return redirect(url_for('simulator'))
 
     return render_template('city_form.html', days=days)
 

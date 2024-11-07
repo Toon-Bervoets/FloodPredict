@@ -16,7 +16,7 @@
     <p class="jumbotron-text">Once submitted, the program calculates a flood risk prediction for your city based on these inputs.</p>
 </div>
 
-<form action="{{ url_for('city_form') }}" method="post" onsubmit="showLoadingScreen()">
+<form action="{{ url_for('simulator') }}" method="post" onsubmit="showLoadingScreen()">
     <label for="city">City or Postcode:</label>
     <input type="text" id="city" name="city" required>
 
